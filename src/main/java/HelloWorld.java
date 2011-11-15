@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.net.URI;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,16 +23,13 @@ public class HelloWorld {
         context.setContextPath("/");
         server.setHandler(context);
 
-        String username = System.getenv("FORCE_USERNAME");
-        String password = System.getenv("FORCE_PASSWORD");
-        if(username==null || password==null) {
-        	System.out.println("One or both of FORCE_USERNAME and FORCE_PASSWORD environment variables are not set.");
+        String url = System.getenv("FORCE_DEV_URL");
+        if(url==null) {
+        	System.out.println("You must set FORCE_DEV_URL environment variable to a valid URL of the form: force://loginEndpoint?params");
         	System.exit(1);
         }
                
-        final DataApi api = new DataApi(new ApiConfig()
-        		.setUsername(username)
-        		.setPassword(password));
+        final DataApi api = new DataApi(new ApiConfig().setForceURL(url));
         
         
         context.addServlet(new ServletHolder(new HttpServlet() {
