@@ -46,7 +46,7 @@
                 <version>22.0.8-SNAPSHOT</version>
                 <configuration>
                     <all>true</all>
-                    <connectionName>connname</connectionName>
+                    <connectionName>dev</connectionName>
                     <destDir>${basedir}/src/main/java</destDir>
                     <packageName>org.example.entity</packageName>
                     <type>json</type>
